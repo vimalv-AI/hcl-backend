@@ -18,7 +18,7 @@ app.use(morgan('dev'));
 
 // Enable CORS with options
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://hcl-portal.vimalv.com'],
+    origin: ['http://localhost:3000', 'https://hcl-portal.vimalv.com', 'http://13.204.79.112:5000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'employee-id']
 }));
