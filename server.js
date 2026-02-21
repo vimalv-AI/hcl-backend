@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
@@ -39,6 +40,15 @@ app.use('/v1/hcl/feedbacks', feedbackRoutes);
 
 app.get('/', (req, res) => {
     res.send('Employee API is running');
+});
+
+// Health check for MongoDB status
+app.get('/v1/hcl/health', (req, res) => {
+    const isConnected = mongoose.connection.readyState === 1;
+    res.status(isConnected ? 200 : 500).json({
+        status: isConnected ? 'connected' : 'disconnected',
+        database: 'mongodb'
+    });
 });
 
 // Important: Note that error handling middleware must be placed after all other app.use() and routes calls
